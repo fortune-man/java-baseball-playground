@@ -1,6 +1,7 @@
 package study;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -25,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CalculatorTest {
 
+
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "4"})
     void 문자열_입력_테스트(String request) {
@@ -37,14 +39,16 @@ public class CalculatorTest {
         assertTrue(assertion);
     }
 
+    @DisplayName("사용자 입력 덧셈 연산")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "4"})
-    void 입력된_문자열로_덧셈_연산(String request) {
+    void addGivenNumbers(String request) {
         // given
         System.setIn(new ByteArrayInputStream(request.getBytes()));
         Scanner scanner = new Scanner(System.in);
+
         int expect = 10;
-        int actual = 0;
+        int actual = Integer.parseInt(scanner.nextLine());
 
         int[] adds = Arrays
                 .stream(request.split(" "))
