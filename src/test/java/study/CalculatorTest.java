@@ -6,8 +6,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -33,6 +35,30 @@ public class CalculatorTest {
 
         boolean assertion = Arrays.stream(expect).anyMatch(i -> i == actual);
         assertTrue(assertion);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "4"})
+    void 입력된_문자열로_덧셈_연산(String request) {
+        // given
+        System.setIn(new ByteArrayInputStream(request.getBytes()));
+        Scanner scanner = new Scanner(System.in);
+        int expect = 10;
+        int actual = 0;
+
+        int[] adds = Arrays
+                .stream(request.split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        // when
+        for (int add : adds) {
+            actual += add;
+        }
+
+        // then
+        assertEquals(expect, actual);
+
     }
 
 }
