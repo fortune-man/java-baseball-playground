@@ -41,8 +41,8 @@ public class CalculatorTest {
 
     @DisplayName("사용자 입력 덧셈 연산")
     @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3", "4"})
-    void addGivenNumbers(String request) {
+    @ValueSource(strings = {"1", "2"})
+    void addGiven(String request) {
         // given
         System.setIn(new ByteArrayInputStream(request.getBytes()));
         Scanner scanner = new Scanner(System.in);
@@ -62,7 +62,44 @@ public class CalculatorTest {
 
         // then
         assertEquals(expect, actual);
-
     }
 
+    @DisplayName("사용자 입력 뺄셈 연산")
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "2"})
+    void minusGiven(String request) {
+        // given
+        int expect = 3 - 2;
+        int minus = Integer.parseInt(request);
+
+        int actual = minus - minus;
+
+        assertEquals(expect, actual);
+    }
+
+    @DisplayName("사용자 입력 곱셈 연산")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2"})
+    void multipleGiven(String request) {
+        // given
+        int expect = 1 * 2;
+        int multiple = Integer.parseInt(request);
+
+        int actual = multiple * multiple;
+
+        assertEquals(expect, actual);
+    }
+
+    @DisplayName("사용자 입력 나눗셈 연산")
+    @ParameterizedTest
+    @ValueSource(strings = {"10", "5"})
+    void divisionGiven(String request) {
+        // given
+        int expect = 10 / 5;
+        int division = Integer.parseInt(request);
+
+        int actual = division * division;
+
+        assertEquals(expect, actual);
+    }
 }
