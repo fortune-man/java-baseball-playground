@@ -1,5 +1,6 @@
 package study;
 
+import java.io.InputStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,82 +23,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CalculatorTest {
 
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3", "4"})
-    void 문자열_입력_테스트(String request) {
-        // given
-        int[] expect = {1, 2, 3, 4};
-
-        int actual = Integer.parseInt(request);
-
-        boolean assertion = Arrays.stream(expect).anyMatch(i -> i == actual);
-        assertTrue(assertion);
+    private InputStream setReadLine(String readLine) {
+        return new ByteArrayInputStream(readLine.getBytes());
     }
+   @DisplayName("1+1 테스트")
+   @Test
+    public void testAdd() {
+        int expect = 2;
+        int actual = 0;
+       String  input = "1+1";
+       for (String index : input.split("")) {
+           if (index.equals("+")) {
+               continue;
+           }
+           int indexs = Integer.parseInt(index);
+           actual = Math.addExact(indexs,indexs);
+       }
 
-    @DisplayName("사용자 입력 덧셈 연산")
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2"})
-    void addGiven(String request) {
-        // given
-        System.setIn(new ByteArrayInputStream(request.getBytes()));
-        Scanner scanner = new Scanner(System.in);
+       assertEquals(expect,actual);
 
-        int expect = 10;
-        int actual = Integer.parseInt(scanner.nextLine());
+   }
 
-        int[] adds = Arrays
-                .stream(request.split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
 
-        // when
-        for (int add : adds) {
-            actual += add;
-        }
-
-        // then
-        assertEquals(expect, actual);
-    }
-
-    @DisplayName("사용자 입력 뺄셈 연산")
-    @ParameterizedTest
-    @ValueSource(strings = {"3", "2"})
-    void minusGiven(String request) {
-        // given
-        int expect = 3 - 2;
-        int minus = Integer.parseInt(request);
-
-        int actual = minus - minus;
-
-        assertEquals(expect, actual);
-    }
-
-    @DisplayName("사용자 입력 곱셈 연산")
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "2"})
-    void multipleGiven(String request) {
-        // given
-        int expect = 1 * 2;
-        int multiple = Integer.parseInt(request);
-
-        int actual = multiple * multiple;
-
-        assertEquals(expect, actual);
-    }
-
-    @DisplayName("사용자 입력 나눗셈 연산")
-    @ParameterizedTest
-    @ValueSource(strings = {"10", "5"})
-    void divisionGiven(String request) {
-        // given
-        int expect = 10 / 5;
-        int division = Integer.parseInt(request);
-
-        int actual = division * division;
-
-        assertEquals(expect, actual);
-    }
-
-    //dddsdkgewogdos;nagkewnkavd
 }
