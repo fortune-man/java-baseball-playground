@@ -29,20 +29,72 @@ public class CalculatorTest {
    @DisplayName("1+1 테스트")
    @Test
     public void testAdd() {
-        int expect = 2;
+        int expect = 1+1;
         int actual = 0;
        String  input = "1+1";
        for (String index : input.split("")) {
            if (index.equals("+")) {
                continue;
            }
-           int indexs = Integer.parseInt(index);
-           actual = Math.addExact(indexs,indexs);
+           int parsing = Integer.parseInt(index);
+           actual = Math.addExact(parsing,parsing);
        }
 
        assertEquals(expect,actual);
 
    }
+  @DisplayName("1-1 테스트")
+  @Test
+  public void testMinus() {
+    int expect = 1-1;
+    int actual = 0;
+    String  input = "1-1";
+    for (String index : input.split("")) {
+      if (index.equals("-")) {
+        continue;
+      }
+      int parsing = Integer.parseInt(index);
+      actual = Math.subtractExact(parsing,parsing);
+    }
+
+    assertEquals(expect,actual);
+
+  }
+  @DisplayName("1*10 테스트")
+  @Test
+  public void testMultiple() {
+    int expect = 1*10;
+    int actual = 10;
+    String  input = "1*10";
+    for (String index : input.split("")) {
+      if (index.equals("*")) {
+        continue;
+      }
+      int parsing = Integer.parseInt(index);
+      actual = Math.multiplyExact(parsing,parsing);
+    }
+
+    assertEquals(expect,actual);
+
+  }
+  @DisplayName("10/5 테스트")
+  @Test
+  public void testDivision() {
+    int expect = 10 / 5;
+    int actual = 0;
+    String  input = "10/5";
+    for (String index : input.split("")) {
+      if (index.equals("/")) {
+        continue;
+      }
+      int parsing = Integer.parseInt(index);
+      actual = Math.floorDiv(parsing,parsing);
+    }
+
+    assertEquals(expect,actual);
+
+  }
+
 
 
 }
