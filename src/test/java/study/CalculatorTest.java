@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static java.lang.Math.floorDiv;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,42 +54,44 @@ public class CalculatorTest {
       if (index.equals("-")) {
         continue;
       }
-      int parsing = Integer.parseInt(index);
-      actual = Math.subtractExact(parsing,parsing);
+      int parsingFirst = Integer.parseInt(index);
+      int parsingNext = Integer.parseInt(index);
+      actual = Math.subtractExact(parsingFirst,parsingNext);
     }
 
     assertEquals(expect,actual);
 
   }
-  @DisplayName("1*10 테스트")
+  @DisplayName("5*2 테스트")
   @Test
   public void testMultiple() {
-    int expect = 1*10;
+    int expect = 5*2;
     int actual = 10;
-    String  input = "1*10";
+    String  input = "5*2";
     for (String index : input.split("")) {
       if (index.equals("*")) {
         continue;
       }
-      int parsing = Integer.parseInt(index);
-      actual = Math.multiplyExact(parsing,parsing);
+      int parsingFirst = Integer.parseInt(index);
+      int parsingNext = Integer.parseInt(index);
+      actual = Math.multiplyExact(parsingFirst,parsingNext);
     }
 
     assertEquals(expect,actual);
 
   }
-  @DisplayName("10/5 테스트")
+  @DisplayName("8/4 테스트")
   @Test
   public void testDivision() {
-    int expect = 10 / 5;
+    int expect = 8 / 4;
     int actual = 0;
-    String  input = "10/5";
+    String  input = "8/4";
     for (String index : input.split("")) {
       if (index.equals("/")) {
         continue;
       }
       int parsing = Integer.parseInt(index);
-      actual = Math.floorDiv(parsing,parsing);
+      actual = floorDiv(parsing, parsing);
     }
 
     assertEquals(expect,actual);
