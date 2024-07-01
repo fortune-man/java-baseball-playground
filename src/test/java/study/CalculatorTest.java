@@ -7,17 +7,7 @@ import java.util.Stack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.io.ByteArrayInputStream;
-import java.util.Arrays;
-import java.util.Scanner;
-
-import static java.lang.Math.floorDiv;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * 요구사항
@@ -27,46 +17,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CalculatorTest {
 
-  private boolean operation(String index){
-    return index.equals("+") || index.equals("-") || index.equals("*") || index.equals("/");
-  }
+  // 컨텍스트 : 입력순서대로 사칙연산을 실행하는 프로그램
+  // 기능 목록
+  // 순서대로 계산 여부 테스트
+  // 계산 결과 저장 테스트
+  // 저장된 결과를 순서대로 계산 테스트
 
-  @DisplayName("입력값 숫자 / 연산기호 구분 테스트")
+  @DisplayName("순서대로 계산 여부 테스트")
   @Test
-  void testInput() {
-    //given
-    int expect = 10;
-    //when
-    Stack<Integer> number = new Stack<>();
-    String input = "2 + 3 * 4 / 2";
-    String[] index = input.split(" ");
-    if(operation(index[0])){
-      if (index.equals("+")){
-        int add = Integer.parseInt(index) + Integer.parseInt(index);
-        number.push(add);
-      }
-      if (index.equals("-")){
-        int minus = Integer.parseInt(index) + Integer.parseInt(index);
-        number.push(minus);
-
-      }
-      if (index.equals("*")){
-        int multiple = Integer.parseInt(index) + Integer.parseInt(index);
-        number.push(multiple);
-
-      }
-      if (index.equals("/")){
-        int division = Integer.parseInt(index) + Integer.parseInt(index);
-        number.push(division);
-      }
-    }
-
-    Integer actual = number.peek();
-
-
-    assertEquals(expect, actual);
+  void calculateInOrder(){
 
   }
+
+  @DisplayName("계산 결과 저장 테스트")
+  @Test
+  void setResultTest(){
+
+  }
+
+  @DisplayName("저장된 결과를 순서대로 계산 테스트")
+  @Test
+  void calculateResultsInOrderTest(){
+
+  }
+
+
 
 
 
