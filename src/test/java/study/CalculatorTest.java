@@ -1,6 +1,9 @@
 package study;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,77 +27,44 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class CalculatorTest {
 
-    private InputStream setReadLine(String readLine) {
-        return new ByteArrayInputStream(readLine.getBytes());
-    }
-   @DisplayName("1+1 테스트")
-   @Test
-    public void testAdd() {
-        int expect = 1+1;
-        int actual = 0;
-       String  input = "1+1";
-       for (String index : input.split("")) {
-           if (index.equals("+")) {
-               continue;
-           }
-           int parsing = Integer.parseInt(index);
-           actual = Math.addExact(parsing,parsing);
-       }
-
-       assertEquals(expect,actual);
-
-   }
-  @DisplayName("1-1 테스트")
-  @Test
-  public void testMinus() {
-    int expect = 1-1;
-    int actual = 0;
-    String  input = "1-1";
-    for (String index : input.split("")) {
-      if (index.equals("-")) {
-        continue;
-      }
-      int parsingFirst = Integer.parseInt(index);
-      int parsingNext = Integer.parseInt(index);
-      actual = Math.subtractExact(parsingFirst,parsingNext);
-    }
-
-    assertEquals(expect,actual);
-
+  private boolean operation(String index){
+    return index.equals("+") || index.equals("-") || index.equals("*") || index.equals("/");
   }
-  @DisplayName("5*2 테스트")
+
+  @DisplayName("입력값 숫자 / 연산기호 구분 테스트")
   @Test
-  public void testMultiple() {
-    int expect = 5*2;
-    int actual = 10;
-    String  input = "5*2";
-    for (String index : input.split("")) {
-      if (index.equals("*")) {
-        continue;
+  void testInput() {
+    //given
+    int expect = 10;
+    //when
+    Stack<Integer> number = new Stack<>();
+    String input = "2 + 3 * 4 / 2";
+    String[] index = input.split(" ");
+    if(operation(index[0])){
+      if (index.equals("+")){
+        int add = Integer.parseInt(index) + Integer.parseInt(index);
+        number.push(add);
       }
-      int parsingFirst = Integer.parseInt(index);
-      int parsingNext = Integer.parseInt(index);
-      actual = Math.multiplyExact(parsingFirst,parsingNext);
+      if (index.equals("-")){
+        int minus = Integer.parseInt(index) + Integer.parseInt(index);
+        number.push(minus);
+
+      }
+      if (index.equals("*")){
+        int multiple = Integer.parseInt(index) + Integer.parseInt(index);
+        number.push(multiple);
+
+      }
+      if (index.equals("/")){
+        int division = Integer.parseInt(index) + Integer.parseInt(index);
+        number.push(division);
+      }
     }
 
-    assertEquals(expect,actual);
+    Integer actual = number.peek();
 
-  }
-  @DisplayName("8/4 테스트")
-  @Test
-  public void testDivision() {
-    int expect = 8 / 4;
-    int actual = 0;
-    String  input = "8/4";
-    for (String index : input.split("")) {
-      if (index.equals("/")) {
-        continue;
-      }
-      int parsing = Integer.parseInt(index);
-      actual = floorDiv(parsing, parsing);
-    }
 
-    assertEquals(expect,actual);
+    assertEquals(expect, actual);
 
   }
 
